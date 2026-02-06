@@ -19,12 +19,14 @@ body {
   text-align: center;
 }
 
+/* Container for everything */
 .container {
   z-index: 2;
   padding: 20px;
   max-width: 350px;
 }
 
+/* Sparkle text */
 h1 {
   font-size: 2.4rem;
   margin-bottom: 5px;
@@ -41,6 +43,7 @@ h1 {
   to { text-shadow: 0 0 25px #fff, 0 0 40px #ff69b4; }
 }
 
+/* Slideshow */
 .slideshow {
   width: 140px;
   height: 140px;
@@ -55,8 +58,11 @@ h1 {
 .slideshow img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;       /* Fill the circle fully */
+  object-position: center; /* Keep the main part centered */
   position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
   animation: slide 12s infinite;
 }
@@ -78,7 +84,6 @@ h1 {
   margin: 30px auto;
   width: 200px;
   position: relative;
-  cursor: pointer;
 }
 
 .cake-base {
@@ -177,23 +182,23 @@ h1 {
 
 <body>
 
-<div class="container">
+<div class="container" id="birthdayPage">
   <h1>Happyyy Birthday 🎂💖</h1>
   <div id="sparkleName">Disha 💕 (my Polu)</div>
 
   <div class="slideshow">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
+    <img src="photo1.jpg" alt="Polu 1">
+    <img src="photo2.jpg" alt="Polu 2">
+    <img src="photo3.jpg" alt="Polu 3">
   </div>
 
-  <div class="cake-container" onclick="blowCandle()">
+  <div class="cake-container">
     <div class="cake-base">
       <div class="frosting"></div>
       <div class="candles">
-        <div class="candle"><div class="flame" id="flame1"></div></div>
-        <div class="candle" style="left: 50px;"><div class="flame" id="flame2"></div></div>
-        <div class="candle" style="left: 100px;"><div class="flame" id="flame3"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle" style="left: 50px;"><div class="flame"></div></div>
+        <div class="candle" style="left: 100px;"><div class="flame"></div></div>
       </div>
     </div>
   </div>
@@ -203,15 +208,9 @@ h1 {
 </div>
 
 <!-- Music -->
-<div style="display:none;">
-<iframe
-  id="musicIframe"
-  width="0" height="0"
-  src="https://www.youtube.com/embed/TkxVOa6u59M?autoplay=0&loop=1&playlist=TkxVOa6u59M"
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-></iframe>
-</div>
+<audio id="music" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/12/08/audio_0f2096ee9a.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 // Typing
@@ -234,15 +233,7 @@ function typeText(){
 }
 typeText();
 
-// Blow candle
-function blowCandle(){
-  document.getElementById("flame1").style.display="none";
-  document.getElementById("flame2").style.display="none";
-  document.getElementById("flame3").style.display="none";
-  document.getElementById("finalLine").style.display="block";
-}
-
-// Balloons
+// Balloons auto
 setInterval(()=>{
   const b=document.createElement("div");
   b.className="balloon";
